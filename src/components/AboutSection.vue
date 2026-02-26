@@ -6,40 +6,26 @@
     <div class="container">
       <h2>Over Mij</h2>
       <div class="about-content">
-        <div class="about-text">
-          <p>
-            Welkom! Ik ben gek op alles wat met wol te maken heeft. Al meer dan 10 jaar geleden begon mijn liefde voor vilten,
-            en sindsdien heb ik talloze workshops gegeven en veel prachtige producten gemaakt.
-          </p>
-          <p>
-            Mijn passie is om anderen te inspireren en de kunst van vilten over te brengen. Door het creatieve proces met wol 
-            kunnen mensen tot rust komen en iets moois creëren. Elk product dat uit mijn atelier komt, is met veel liefde en 
-            aandacht gemaakt.
-          </p>
-        </div>
         <div class="about-image">
-          <div class="image-placeholder">
-            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-              <!-- Achtergrond -->
-              <rect width="300" height="300" fill="#f0f0f0" rx="15"/>
-              
-              <!-- Persoon silhouet -->
-              <circle cx="150" cy="80" r="35" fill="#667eea" opacity="0.8"/>
-              <path d="M 100 130 Q 100 115, 150 115 Q 200 115, 200 130 L 200 200 Q 200 220, 150 220 Q 100 220, 100 200 Z" 
-                    fill="#764ba2" opacity="0.8"/>
-              
-              <!-- Decoratieve wol elementen -->
-              <circle cx="60" cy="100" r="20" fill="#e8b4e8" opacity="0.6"/>
-              <circle cx="240" cy="120" r="25" fill="#d4a5d4" opacity="0.6"/>
-              <circle cx="80" cy="180" r="18" fill="#c8a2d8" opacity="0.5"/>
-              <circle cx="220" cy="200" r="22" fill="#d9b3e0" opacity="0.5"/>
-              
-              <!-- Decoratieve lijnen -->
-              <path d="M 50 150 Q 100 140, 150 150" stroke="#667eea" stroke-width="2" fill="none" opacity="0.4"/>
-              <path d="M 150 150 Q 200 160, 250 150" stroke="#764ba2" stroke-width="2" fill="none" opacity="0.4"/>
-            </svg>
+          <div class="over-mij-foto">
+            <img src="/public/over_mij.jpg" alt="over mij foto">
           </div>
         </div>
+
+        <div class="about-text">
+          <p>
+            Sinds ik, in ongeveer 2001, mijn eigen atelier ben gestart heb ik veel workshops mogen geven waarin mensen mooie producten hebben gemaakt. 
+            <br><br>
+            Sinds januari 2025 ben ik gestopt met het geven van workshops. 
+            Hierdoor heb ik meer tijd om producten te maken die ik verkoop op de markt in Almere, op fairs en tijdens evenementen elders in het land.
+            <br><br>
+            Je kan wandkleden van mij zien en kopen in het lunch cafe gedeelte van de Odin winkel in Almere Oosterwold. 
+            Zie <a href="https://www.odin.nl/over-odin/winkels/-62659-odin-almere-vliervelden/">de website van Odin</a> voor meer informatie.
+            <br><br>
+            Ook kun je mij vinden op <a href="https://www.facebook.com/werkenmetwol">Facebook</a> en <a href="https://www.instagram.com/werkenmetwol">Instagram</a>           
+          </p>
+        </div>
+        
       </div>
     </div>
   </section>
@@ -48,14 +34,14 @@
 <style scoped>
 .section {
   background: white;
-  margin: 40px 30px;
+  margin: 20px 30px 10px;
   border-radius: 20px;
-  padding: 60px 30px;
+  padding: 60px 30px; 
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -70,18 +56,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: center;
+  align-items: start;
 }
 
 .about-text {
+  margin-top: 5px;
   color: #555;
   line-height: 1.8;
 }
 
 .about-text p {
-  margin-bottom: 20px;
+  margin-bottom: 0x;
   text-align: justify;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .about-text p:last-child {
@@ -94,19 +81,14 @@
   align-items: center;
 }
 
-.image-placeholder {
+.over-mij-foto {
   width: 100%;
-  max-width: 300px;
-  aspect-ratio: 1;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
 }
 
-.image-placeholder svg {
+.over-mij-foto img {
   width: 100%;
-  height: 100%;
+  border-radius:5%;
 }
 
 @media (max-width: 768px) {

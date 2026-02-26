@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import HeroSection from './components/HeroSection.vue'
+import AgendaSection from './components/AgendaSection.vue'
 import ProductenSection from './components/ProductenSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import ContactSection from './components/ContactSection.vue'
@@ -9,6 +10,7 @@ const activeSection = ref('home')
 
 const menuItems = [
   { id: 'home', label: 'Home' },
+  { id: 'agenda', label: 'Agenda' },
   { id: 'producten', label: 'Producten' },
   { id: 'over', label: 'Over Mij' },
   { id: 'contact', label: 'Contact' }
@@ -18,7 +20,9 @@ const scrollToSection = (sectionId) => {
   activeSection.value = sectionId
   const element = document.getElementById(sectionId)
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
+    const headerHeight = document.querySelector('.header')?.offsetHeight || 120
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY
+    window.scrollTo({ top: elementPosition - headerHeight, behavior: 'smooth' })
   }
 }
 
@@ -49,21 +53,17 @@ onUnmounted(() => {
     <!-- Header met Logo en Menu -->
     <header class="header">
       <div class="header-content">
+        <a href="/" style="text-decoration:none">
         <div class="logo">
-          <div class="logo-icon">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <!-- Wol bal -->
-              <circle cx="50" cy="50" r="35" fill="white" opacity="0.9"/>
-              <path d="M 30 40 Q 40 35, 50 40 T 70 40" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
-              <path d="M 30 50 Q 40 45, 50 50 T 70 50" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
-              <path d="M 30 60 Q 40 55, 50 60 T 70 60" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
-            </svg>
+          <div class="logo-icon" style="padding-right: 50px;">
+            <img src="/public/favicon.ico" height="100px" alt="logo">
           </div>
           <div class="logo-text">
-            <h1>Werken met Wol</h1>
-            <p>Vilten & Wolproducten</p>
+            <h1>Werken Met Wol</h1>
+            <p>Viltatelier in Biddinghuizen</p>
           </div>
         </div>
+        </a>
         
         <nav class="nav">
           <a 
@@ -78,8 +78,14 @@ onUnmounted(() => {
       </div>
     </header>
 
+    <!-- Spacer for fixed header -->
+    <div class="header-spacer"></div>
+
     <!-- Hero Section -->
     <HeroSection :id="'home'" />
+
+    <!-- Agenda Section -->
+    <AgendaSection :id="'agenda'" />
 
     <!-- Producten Section -->
     <ProductenSection :id="'producten'" />
@@ -92,7 +98,7 @@ onUnmounted(() => {
 
     <!-- Footer -->
     <footer class="footer">
-      <p>&copy; 2025 Werken met Wol - Alle rechten voorbehouden</p>
+      <p>&copy; 2026 - Werken met Wol - Alle rechten voorbehouden</p>
     </footer>
   </div>
 </template>
@@ -112,10 +118,12 @@ onUnmounted(() => {
 
 /* Header */
 .header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
 }
 
@@ -190,6 +198,10 @@ onUnmounted(() => {
 .nav a.active {
   color: white;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.header-spacer {
+  height: 120px;
 }
 
 /* Footer */

@@ -1,21 +1,24 @@
 <script setup>
 const contactInfo = [
-  { icon: '📧', text: 'werkenmetwol@planet.nl' },
-  { icon: '📱', text: '0612685399' },
-  { icon: '📍', text: 'Het Gareel 8. 8256 DM, Biddinghuizen' }
+  { icon: '<i class="fa-solid fa-envelope" style="font-size:24px"></i>', text: 'werkenmetwol@planet.nl', link: 'mailto:werkenmetwol@planet.nl' },
+  { icon: '<i class="fa-solid fa-phone" style="font-size:24px"></i>', text: '0612685399', link: 'tel:0612685399' },
+  { icon: '<i class="fa-brands fa-facebook-f" style="font-size:24px"></i>', text: 'Facebook', link: 'https://www.facebook.com/werkenmetwol/' },
+  { icon: '<i class="fa-brands fa-instagram" style="font-size:24px"></i>', text: 'Instagram', link: 'https://www.instagram.com/werkenmetwol/' },
+  { icon: '<i class="fa-solid fa-location-dot" style="font-size:24px"></i>', text: 'Harderringweg 6, 8256 PT Biddinghuizen', link: null }
 ]
 </script>
 
 <template>
   <section class="section contact">
     <div class="container">
-      <h2>Neem Contact Op</h2>
-      <p class="section-intro">Vragen of opmerkingen? Neem gerust contact op</p>
+      <h2>Contact</h2>
+      <p class="section-intro">Vragen? Neem gerust contact op</p>
       
       <div class="contact-info">
         <div v-for="(item, index) in contactInfo" :key="index" class="contact-item">
-          <span class="icon">{{ item.icon }}</span>
-          <span>{{ item.text }}</span>
+          <span class="icon" v-html="item.icon"></span>
+          <a v-if="item.link" :href="item.link" class="contact-link">{{ item.text }}</a>
+          <span v-else>{{ item.text }}</span>
         </div>
       </div>
     </div>
@@ -44,7 +47,7 @@ const contactInfo = [
   color: #667eea;
   font-size: 2.5em;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .section-intro {
