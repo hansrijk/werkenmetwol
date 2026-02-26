@@ -43,7 +43,7 @@ const upcomingDates = computed(() => {
         </div>
         <div class="about-image">
           <div class="image-placeholder">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1993.1959263521728!2d5.2706717!3d52.342509400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c616119d56115d%3A0xb146a2d759c1765a!2sDe%20Stadsboerderij!5e1!3m2!1snl!2snl!4v1771957781672!5m2!1snl!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1993.1959263521728!2d5.2706717!3d52.342509400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c616119d56115d%3A0xb146a2d759c1765a!2sDe%20Stadsboerderij!5e1!3m2!1snl!2snl!4v1771957781672!5m2!1snl!2snl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -115,12 +115,24 @@ const upcomingDates = computed(() => {
   height: 100%;
 }
 
-@media (max-width: 768px) {
+.image-placeholder iframe {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
   .about-content {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
+  .image-placeholder {
+    max-width: 100%;
+    aspect-ratio: 4/3;
+  }
+}
+
+@media (max-width: 768px) {
   .about-text p {
     text-align: left;
   }
@@ -131,7 +143,11 @@ const upcomingDates = computed(() => {
   }
 
   .section h2 {
-    font-size: 2em;
+    font-size: 1.5em;
+  }
+
+  .image-placeholder iframe {
+    height: 250px;
   }
 }
 </style>

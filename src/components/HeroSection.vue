@@ -108,14 +108,57 @@ const scrollToAgenda = (e) => {
   height: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
   }
-  
+
   .hero-content h2 {
-    font-size: 2em;
+    font-size: 2.5em;
+  }
+
+  .hero-content h3 {
+    font-size: 1.4em;
+  }
+
+  .hero-content p {
+    font-size: 1.1em;
+  }
+
+  .homepage-foto {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 30px 16px;
+    gap: 24px;
+  }
+
+  .hero-content h2 {
+    font-size: 1.6em;
+  }
+
+  .hero-content h3 {
+    font-size: 1.1em;
+  }
+
+  .hero-content p {
+    font-size: 1em;
+  }
+
+  .btn-primary {
+    padding: 12px 30px;
+    font-size: 0.95em;
+  }
+
+  .homepage-foto {
+    padding: 15px;
   }
 }
 </style>

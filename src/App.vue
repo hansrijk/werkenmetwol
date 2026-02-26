@@ -7,6 +7,11 @@ import AboutSection from './components/AboutSection.vue'
 import ContactSection from './components/ContactSection.vue'
 
 const activeSection = ref('home')
+const mobileMenuOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
 
 const menuItems = [
   { id: 'home', label: 'Home' },
@@ -18,6 +23,7 @@ const menuItems = [
 
 const scrollToSection = (sectionId) => {
   activeSection.value = sectionId
+  mobileMenuOpen.value = false
   const element = document.getElementById(sectionId)
   if (element) {
     const headerHeight = document.querySelector('.header')?.offsetHeight || 120
@@ -55,8 +61,8 @@ onUnmounted(() => {
       <div class="header-content">
         <a href="/" style="text-decoration:none">
         <div class="logo">
-          <div class="logo-icon" style="padding-right: 50px;">
-            <img src="/public/favicon.ico" height="100px" alt="logo">
+          <div class="logo-icon">
+            <img src="/public/favicon.ico" alt="logo" class="logo-img">
           </div>
           <div class="logo-text">
             <h1>Werken Met Wol</h1>
@@ -65,7 +71,7 @@ onUnmounted(() => {
         </div>
         </a>
         
-        <nav class="nav">
+        <nav class="nav desktop-nav">
           <a 
             v-for="item in menuItems" 
             :key="item.id"
@@ -75,8 +81,27 @@ onUnmounted(() => {
             {{ item.label }}
           </a>
         </nav>
+
+        <button class="hamburger" @click="toggleMobileMenu" :class="{ open: mobileMenuOpen }" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </header>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" :class="{ open: mobileMenuOpen }" @click="mobileMenuOpen = false"></div>
+    <nav class="mobile-nav" :class="{ open: mobileMenuOpen }">
+      <a 
+        v-for="item in menuItems" 
+        :key="item.id"
+        @click="scrollToSection(item.id)"
+        :class="{ active: activeSection === item.id }"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
 
     <!-- Spacer for fixed header -->
     <div class="header-spacer"></div>
@@ -145,14 +170,14 @@ onUnmounted(() => {
 }
 
 .logo-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+}
+
+.logo-img {
+  height: 80px;
+  width: auto;
 }
 
 .logo-icon svg {
@@ -213,17 +238,150 @@ onUnmounted(() => {
   margin-top: 40px;
 }
 
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 110;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #667eea;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile overlay */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.mobile-menu-overlay.open {
+  display: block;
+}
+
+/* Mobile nav drawer */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 260px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  z-index: 105;
+  flex-direction: column;
+  padding: 100px 30px 30px;
+  gap: 8px;
+  transition: right 0.3s ease;
+}
+
+.mobile-nav.open {
+  right: 0;
+}
+
+.mobile-nav a {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.mobile-nav a:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.mobile-nav a.active {
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+  .nav {
+    gap: 10px;
+  }
+
+  .nav a {
+    font-size: 0.9em;
+    padding: 6px 12px;
+  }
+
+  .logo-text h1 {
+    font-size: 1.4em;
+  }
+
+  .logo-img {
+    height: 60px;
+  }
+}
+
 @media (max-width: 768px) {
   .header-content {
-    flex-direction: column;
-    text-align: center;
+    padding: 12px 16px;
   }
-  
-  .nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  .logo-text h1 {
+    font-size: 1.2em;
+  }
+
+  .logo-text p {
+    font-size: 0.75em;
+  }
+
+  .header-spacer {
+    height: 80px;
+  }
+
+  .logo-img {
+    height: 40px;
+  }
+
+  .logo {
+    gap: 8px;
   }
 }
 </style>

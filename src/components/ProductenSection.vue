@@ -290,5 +290,9 @@ img {
     margin: 20px 15px;
     padding: 40px 20px;
   }
+
+  .section h2 {
+    font-size: 1.5em;
+  }
 }
 </style>

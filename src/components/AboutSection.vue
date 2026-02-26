@@ -91,12 +91,19 @@
   border-radius:5%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about-content {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
+  .over-mij-foto {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
   .about-text p {
     text-align: left;
   }
@@ -107,7 +114,12 @@
   }
 
   .section h2 {
-    font-size: 2em;
+    font-size: 1.5em;
+    margin-bottom: 24px;
+  }
+
+  .about-text p {
+    font-size: 0.95em;
   }
 }
 </style>

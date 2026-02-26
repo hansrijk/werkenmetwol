@@ -86,5 +86,19 @@ const contactInfo = [
     margin: 20px 15px;
     padding: 40px 20px;
   }
+
+  .section h2 {
+    font-size: 1.5em;
+  }
+
+  .section-intro {
+    font-size: 0.95em;
+    margin-bottom: 30px;
+  }
+
+  .contact-item {
+    padding: 14px;
+    font-size: 0.95em;
+  }
 }
 </style>
